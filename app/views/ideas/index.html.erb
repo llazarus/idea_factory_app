@@ -1,0 +1,20 @@
+<% @ideas.each do |idea| %>
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="card-toggle">
+        <span class="show-plus">
+          <a>
+            <i class="far fa-plus-square"></i>
+          </a>
+        </span>
+        <span class="show-minus">
+          <a>
+            <i class="far fa-minus-square"></i>
+          </a>
+        </span>
+        <h5 clas="card-title" id="card-title"><a href="/ideas/<%= idea.id if idea %>"><%= idea.title if idea %></a></h5>
+        <p class="card-content card-text" id="card-text"><%= idea.description if idea%></p>
+      </div>
+    </div>
+  </div>
+<% end %>

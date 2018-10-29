@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Idea Factory</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+  </head>
+
+    <body>
+
+    <header>
+      <nav class="navbar navbar-expand-md navbar-primary pl-4 pr-4" style="background-color: #e3f2fd;">
+        <div id="nav-left">
+          <a class="navbar-brand" href="<%= root_path %>">Idea Factory</a>
+        </div>
+
+        <div id="nav-right" class="ml-auto">
+          <button class="navbar-toggler ml-auto custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="<%= new_idea_path %>">New Idea</a>
+              <% if user_signed_in? %>
+                <p class="nav-item mb-0 mt-2 ml-2 mr-2 text-primary">
+                  Hello, <strong><%= "#{current_user.first_name}" %></strong>
+                </p>
+                <%= link_to "Sign Out", session_path, method: :delete, class: "nav-item nav-link" %>
+              <% else %>
+                <%= link_to "Sign Up", new_user_path, class: "nav-item nav-link" %>
+                <%= link_to "Sign In", new_session_path, class: "nav-item nav-link" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+      </nav>
+    </header>
+
+    <div class="container-fluid mt-4 mb-4 pl-4 pr-4">
+      <% flash.each do |type, message| %>
+        <div class="alert alert-<%= type %> alert-dismissible fade show" role="alert">
+          <%= message %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </div>
+
+  </body>
+
+</html>

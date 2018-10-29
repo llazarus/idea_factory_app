@@ -1,0 +1,45 @@
+.custom-toggler.navbar-toggler {
+  border-color: rgb(2, 117, 216);
+}
+
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(2, 117, 216)' stroke-width='1' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+#card-title {
+  display: inline;
+}
+
+.fa-plus-square {
+  color: rgb(2, 117, 216);
+  font-size: 1.25rem;
+}
+
+.fa-minus-square {
+  color: rgb(2, 117, 216);
+  font-size: 1.25rem;
+}
+
+a:hover {
+  color: blue;
+  text-decoration: none;
+}
+
+.fa-plus-square:hover {
+  color: blue;
+  font-size: 1.25rem;
+}
+
+.fa-minus-square:hover {
+  color: blue;
+  font-size: 1.25rem;
+}
+
+.show-minus {
+  display: none;
+}
+
+.card-content {
+  display: none;
+}
+
