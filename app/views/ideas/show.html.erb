@@ -1,0 +1,61 @@
+<div>
+  <h2><%= @idea.title %></h2>
+  <p><%= @idea.description %></p>
+
+  <div>
+    <small>
+      Idea created <%= time_ago_in_words(@idea.created_at) %> ago by <strong><%= @idea.user&.first_name || "[DELETED]" %></strong>
+    </small>
+  </div>
+
+  <div class="mt-3 mb-3">
+    <% if can?(:edit, @idea) %>
+      <%= link_to("Edit", edit_idea_path(@idea.id), class: "btn btn-outline-primary btn-md", role: "button") %>
+    <% end %>
+
+    <% if can?(:delete, @idea) %>
+      <%= link_to("Delete", idea_path(@idea.id), method: :delete, data: { confirm: "Do you REALLY want to delete this idea?" }, class: "btn btn-outline-primary btn-md", role: "button") %>
+    <% end %>
+  </div>
+</div>
+
+<div class="mt-4 mb-4">
+  <h3>Reviews</h3>
+
+  <%= form_for([@idea, @review]) do |f| %>
+    <% if @review.errors.present? %>
+      <p>
+        <%= @review.errors.full_messages.join(", ") %>
+      </p>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.text_area(
+        :body,
+        cols: 60,
+        rows: 3,
+        placeholder: "Enter a review here...",
+        class: "form-control"
+      ) %>
+    </div>
+    <%= f.submit "Submit", class: "btn btn-outline-primary" %>
+  <% end %>
+</div>
+
+<div>
+  <% @reviews.each do |review| %>
+    <div class="mb-3">
+      <%= review.body %> <br>
+      <small>
+        Review created <%= time_ago_in_words(review.created_at) %> ago by <strong><%= review.user&.first_name || "[DELETED]" %></strong>
+      </small>
+      <% if can? :delete, review %>
+        <small>
+          •
+          <%= link_to("Delete", idea_review_path(@idea, review), method: :delete, data: { confirm: "Do you REALLY want to delete this review?" }) %>
+        </small>
+      <% end %>
+      <hr>
+    </div>
+  <% end %>
+</div>
